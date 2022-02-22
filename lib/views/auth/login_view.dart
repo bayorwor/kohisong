@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kohisong/views/auth/signup_view.dart';
+import 'package:kohisong/views/home_view.dart';
 
 class LoginView extends StatelessWidget {
   const LoginView({Key? key}) : super(key: key);
@@ -39,7 +40,12 @@ class LoginView extends StatelessWidget {
                 ),
                 SizedBox(height: 20),
                 TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomeView()),
+                      );
+                    },
                     child: Text('Login'),
                     style: TextButton.styleFrom(
                       minimumSize: Size(MediaQuery.of(context).size.width, 36),
