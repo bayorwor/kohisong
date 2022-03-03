@@ -3,6 +3,7 @@ import 'package:kohisong/data_sourcess/categories.dart';
 import 'package:kohisong/farms_data.dart';
 import 'package:kohisong/shared/category_card.dart';
 import 'package:kohisong/shared/recommened_farms.dart';
+import 'package:kohisong/views/category.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({Key? key}) : super(key: key);
@@ -72,15 +73,24 @@ class HomeView extends StatelessWidget {
             SizedBox(height: 16),
             Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height - 200,
+              height: MediaQuery.of(context).size.height * 0.8,
               child: GridView.count(
                 crossAxisCount: 3,
                 children: [
                   for (var i = 0; i < categories.length; i++)
-                    CategoryCard(
-                      title: categories[i]["category"],
-                      image: categories[i]["image"],
-                    )
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) =>
+                                    CategoryScreen(category: categories[i])));
+                      },
+                      child: CategoryCard(
+                        title: categories[i]["category"],
+                        image: categories[i]["image"],
+                      ),
+                    ),
                 ],
               ),
             ),
