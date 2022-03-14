@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "909034227726",
+    "project_id": "kohisong-project",
+    "storage_bucket": "kohisong-project.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:909034227726:android:02c6dd0737aee03acdd45f",
+        "android_client_info": {
+          "package_name": "com.example.kohisong"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "909034227726-efubl7mk3dvse1qelkkukmic5ni73qh9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2DlpGyeHSImGhkwpc5mRts8ieYazpSVM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "909034227726-efubl7mk3dvse1qelkkukmic5ni73qh9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

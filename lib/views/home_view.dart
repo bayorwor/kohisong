@@ -1,102 +1,85 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:kohisong/data_sourcess/categories.dart';
-import 'package:kohisong/farms_data.dart';
-import 'package:kohisong/shared/category_card.dart';
-import 'package:kohisong/shared/recommened_farms.dart';
-import 'package:kohisong/views/category.dart';
+import 'package:kohisong/views/add_product.dart';
+import 'package:kohisong/views/auth/login_view.dart';
+import 'package:kohisong/views/dashoard.dart';
+import 'package:kohisong/views/products.dart';
+import 'package:kohisong/views/profile_view.dart';
 
-class HomeView extends StatelessWidget {
+class HomeView extends StatefulWidget {
   const HomeView({Key? key}) : super(key: key);
 
   @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  int _currentIndex = 0;
+
+  final List<Widget> _views = [
+    Dashboard(),
+    AddProduct(),
+    Products(),
+    ProfileView(),
+  ];
+
+  @override
+  initState() {
+    _userAuth();
+    super.initState();
+  }
+
+  _userAuth() {
+    _auth.authStateChanges().listen((user) {
+      if (user == null) {
+        Navigator.pushAndRemoveUntil(context,
+            MaterialPageRoute(builder: (_) => LoginView()), (route) => false);
+      }
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: ListView(
-          padding: const EdgeInsets.all(10),
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Text(
-                  "Catalog",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+    return _auth.currentUser == null
+        ? const Center(child: CircularProgressIndicator.adaptive())
+        : Scaffold(
+            bottomNavigationBar: BottomNavigationBar(
+              items: const <BottomNavigationBarItem>[
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.home_filled),
+                  label: 'Home',
                 ),
-                Text("Kohisong farms")
-              ],
-            ),
-            SizedBox(height: 16),
-            Row(
-              children: [
-                Expanded(
-                  child: TextField(
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.search),
-                      suffixIcon: Icon(Icons.mic),
-                      hintText: "Search",
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                    ),
-                  ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.add_circle),
+                  label: 'Add',
                 ),
-                IconButton(
-                  icon: Icon(
-                    Icons.filter_list,
-                    size: 40,
-                  ),
-                  onPressed: () {},
-                )
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.shopping_cart_rounded),
+                  label: 'Cart',
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.person_rounded),
+                  label: 'Account',
+                ),
               ],
+              currentIndex: _currentIndex,
+              selectedItemColor: Colors.green,
+              unselectedItemColor: Colors.grey,
+              selectedIconTheme: const IconThemeData(size: 50),
+
+              // showSelectedLabels: true,
+              onTap: (index) {
+                setState(() {
+                  _currentIndex = index;
+                });
+              },
             ),
-            SizedBox(height: 16),
-            const Text(
-              "Recommended Farms",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            body: IndexedStack(
+              index: _currentIndex,
+              children: _views,
             ),
-            SizedBox(height: 16),
-            Container(
-              height: 60,
-              width: MediaQuery.of(context).size.width,
-              child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index) {
-                    return RecommendFarms(title: farms[index]["name"]);
-                  },
-                  itemCount: farms.length),
-            ),
-            SizedBox(height: 16),
-            const Text(
-              "Categories",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            ),
-            SizedBox(height: 16),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height * 0.8,
-              child: GridView.count(
-                crossAxisCount: 3,
-                children: [
-                  for (var i = 0; i < categories.length; i++)
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    CategoryScreen(category: categories[i])));
-                      },
-                      child: CategoryCard(
-                        title: categories[i]["category"],
-                        image: categories[i]["image"],
-                      ),
-                    ),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
+          );
   }
 }

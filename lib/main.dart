@@ -1,9 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:kohisong/views/auth/login_view.dart';
 import 'package:kohisong/views/home_view.dart';
 
-void main(List<String> args) {
-  runApp(KohisongApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(const KohisongApp());
 }
 
 class KohisongApp extends StatelessWidget {
@@ -18,7 +20,7 @@ class KohisongApp extends StatelessWidget {
         primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: LoginView(),
+      home: HomeView(),
     );
   }
 }

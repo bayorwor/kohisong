@@ -1,188 +1,56 @@
 List categories = [
   {
     "id": 1,
-    "category": "Cereal",
+    "category": "cereal",
     "image":
-        "https://images.unsplash.com/photo-1576856497337-4f2be24683da?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTN8fHRvbWF0b2VzfGVufDB8fDB8fA%3D%3D&auto=format&fit=crop&w=800&q=60"
+        "https://cdn.pixabay.com/photo/2014/12/11/02/55/cereals-563796_960_720.jpg"
   },
   {
     "id": 2,
-    "category": "Dairy",
+    "category": "yam",
     "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
+        "https://cdn.pixabay.com/photo/2020/06/19/21/47/sweet-potato-5318960__340.jpg"
   },
   {
     "id": 3,
-    "category": "Fruits",
+    "category": "fruits",
     "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
+        "https://cdn.pixabay.com/photo/2017/05/11/19/44/fresh-fruits-2305192_960_720.jpg"
   },
   {
     "id": 4,
-    "category": "Vegetables",
+    "category": "vegetables",
     "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
+        "https://cdn.pixabay.com/photo/2016/03/05/19/02/vegetables-1238252_960_720.jpg"
   },
   {
     "id": 5,
     "category": "Meat",
     "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
+        "https://cdn.pixabay.com/photo/2016/10/25/15/39/meat-1769187__340.jpg"
   },
   {
     "id": 6,
-    "category": "Fish",
+    "category": "fish",
     "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
+        "https://cdn.pixabay.com/photo/2016/12/31/21/22/discus-fish-1943755__340.jpg"
   },
   {
     "id": 7,
-    "category": "Beverages",
+    "category": "veverages",
     "image":
         "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
   },
   {
     "id": 8,
-    "category": "Snacks",
+    "category": "groundnuts",
     "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
+        "https://cdn.pixabay.com/photo/2016/03/27/21/58/food-1284432__340.jpg"
   },
   {
     "id": 9,
-    "category": "Pepper",
+    "category": "pepper",
     "image":
-        "https://media.istockphoto.com/photos/ground-black-pepper-in-a-wooden-bowl-and-peppercorns-on-a-white-top-picture-id1301622377?b=1&k=20&m=1301622377&s=170667a&w=0&h=mCcdI9-VhSmsoiA6-2WVHFJYDk0SXWAFNctLGHhT7lY="
-  },
-  {
-    "id": 10,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 11,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 12,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 13,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 14,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 14,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 14,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 14,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 14,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 14,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 14,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 14,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 14,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 14,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 14,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 14,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 14,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 14,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 14,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 14,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 14,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
-  },
-  {
-    "id": 14,
-    "category": "Bread",
-    "image":
-        "https://media.istockphoto.com/photos/three-bell-peppers-a-red-a-yellow-and-an-orange-one-picture-id157568993?b=1&k=20&m=157568993&s=170667a&w=0&h=2PJPO7AnhDuQc7qPLbQHLaMBnuITsAIvjbnoXfw_nPk="
+        "https://cdn.pixabay.com/photo/2020/07/03/05/02/tomatoes-5365186_960_720.jpg"
   },
 ];

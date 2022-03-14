@@ -1,52 +1,114 @@
 import 'package:flutter/material.dart';
+import 'package:kohisong/resources/auth_methods.dart';
 import 'package:kohisong/views/auth/signup_view.dart';
 import 'package:kohisong/views/home_view.dart';
+import 'package:kohisong/widgets/toastwidget.dart';
 
-class LoginView extends StatelessWidget {
+class LoginView extends StatefulWidget {
   const LoginView({Key? key}) : super(key: key);
+
+  @override
+  State<LoginView> createState() => _LoginViewState();
+}
+
+class _LoginViewState extends State<LoginView> {
+  final _formKey = GlobalKey<FormState>();
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
+
+  bool _isLoading = false;
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+    _emailController.dispose();
+    _passwordController.dispose();
+  }
+
+  //sign in user
+  signInUser() {
+    setState(() {
+      _isLoading = true;
+    });
+
+    AuthMethods()
+        .loginUser(
+            email: _emailController.text, password: _passwordController.text)
+        .then((value) {
+      if (value == "success") {
+        Navigator.pushReplacement(
+            context, MaterialPageRoute(builder: (context) => HomeView()));
+        setState(() {
+          _isLoading = false;
+        });
+        showToast("Login Successful", color: Colors.green);
+      } else {
+        showToast(value);
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
         child: Form(
+          key: _formKey,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Image(image: AssetImage('assets/logo.png'), height: 100),
+                const Image(image: AssetImage('assets/logo.png'), height: 100),
                 TextFormField(
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.phone),
-                      labelText: 'Phone number',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                  controller: _emailController,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter your email';
+                    }
+                  },
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.phone),
+                    labelText: 'Email',
+                  ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 TextFormField(
-                  decoration: InputDecoration(
-                      prefixIcon: Icon(Icons.lock),
-                      labelText: 'Password',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(10))),
+                  controller: _passwordController,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Please enter your password';
+                    }
+                  },
+                  obscureText: true,
+                  keyboardType: TextInputType.visiblePassword,
+                  decoration: const InputDecoration(
+                    prefixIcon: Icon(Icons.lock),
+                    labelText: 'Password',
+                  ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    Text('Forgeet password?'),
-                    TextButton(onPressed: () {}, child: Text('Reset')),
+                    const Text('Forgeet password?'),
+                    TextButton(onPressed: () {}, child: const Text('Reset')),
                   ],
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 TextButton(
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => HomeView()),
-                      );
+                      signInUser();
                     },
-                    child: Text('Login'),
+                    child: _isLoading
+                        ? const CircularProgressIndicator.adaptive(
+                            backgroundColor: Colors.white,
+                          )
+                        : const Text('Login'),
                     style: TextButton.styleFrom(
                       minimumSize: Size(MediaQuery.of(context).size.width, 36),
                       primary: Colors.white,
@@ -55,15 +117,15 @@ class LoginView extends StatelessWidget {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('Don\'t have an account?'),
+                    const Text('Don\'t have an account?'),
                     TextButton(
                         onPressed: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => SignUpView()));
+                                  builder: (context) => const SignUpView()));
                         },
-                        child: Text('Register')),
+                        child: const Text('Register')),
                   ],
                 )
               ],
