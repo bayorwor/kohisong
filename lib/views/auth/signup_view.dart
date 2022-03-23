@@ -6,6 +6,7 @@ import 'package:kohisong/resources/auth_methods.dart';
 import 'package:kohisong/utils/utils.dart';
 import 'package:kohisong/views/auth/login_view.dart';
 import 'package:kohisong/views/home_view.dart';
+import 'package:kohisong/widgets/toastwidget.dart';
 import 'package:unicons/unicons.dart';
 
 class SignUpView extends StatefulWidget {
@@ -72,12 +73,13 @@ class _SignUpViewState extends State<SignUpView> {
             profilePic: _image!)
         .then((value) {
       if (value == "success") {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomeView()));
+        Navigator.pushAndRemoveUntil(context,
+            MaterialPageRoute(builder: (_) => HomeView()), (route) => false);
       } else {
         setState(() {
           isPending = false;
         });
+        showToast(value);
       }
     });
   }

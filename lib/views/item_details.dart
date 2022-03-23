@@ -1,7 +1,53 @@
 import 'package:flutter/material.dart';
+import 'package:kohisong/resources/cart_methods.dart';
+import 'package:kohisong/views/add_to_cart.dart';
+import 'package:kohisong/widgets/toastwidget.dart';
+import 'package:unicons/unicons.dart';
 
-class ItemDetails extends StatelessWidget {
-  const ItemDetails({Key? key}) : super(key: key);
+class ItemDetails extends StatefulWidget {
+  ItemDetails({Key? key, required this.item}) : super(key: key);
+
+  final item;
+
+  @override
+  State<ItemDetails> createState() => _ItemDetailsState();
+}
+
+class _ItemDetailsState extends State<ItemDetails> {
+  final TextEditingController _qntyController = TextEditingController();
+
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  bool _isLoading = false;
+
+  sendToCart() {
+    setState(() {
+      _isLoading = true;
+    });
+    dynamic itemData = {
+      'item_id': widget.item['uid'],
+      'item_name': widget.item['name'],
+      'item_price': widget.item['price'],
+      'item_image': widget.item['image'],
+      'item_qnty': _qntyController.text,
+    };
+    print(itemData);
+    CartMethods().addToCart(itemData).then((value) {
+      if (value == "success") {
+        Navigator.pop(context);
+        showToast("Item added to cart", color: Colors.green);
+        setState(() {
+          _isLoading = false;
+        });
+      } else {
+        Navigator.pop(context);
+        showToast(value);
+        setState(() {
+          _isLoading = false;
+        });
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +60,61 @@ class ItemDetails extends StatelessWidget {
             TextButton.icon(
               icon: Icon(Icons.shopping_cart),
               label: Text('ADD'),
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (context) {
+                      return AlertDialog(
+                        title: const Text("Please select quantity"),
+                        content: Form(
+                          key: _formKey,
+                          child: Container(
+                            height: 100,
+                            child: Center(
+                              child: Column(
+                                children: [
+                                  TextFormField(
+                                    controller: _qntyController,
+                                    keyboardType: TextInputType.number,
+                                    validator: (value) {
+                                      if (value!.isEmpty) {
+                                        return 'Please enter quantity';
+                                      } else if (int.parse(value) >
+                                          int.parse(widget.item['qnty'])) {
+                                        return 'Quantity is not available';
+                                      }
+                                    },
+                                    decoration: const InputDecoration(
+                                      labelText: 'Quantity',
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                        actions: <Widget>[
+                          TextButton(
+                            style: TextButton.styleFrom(
+                              primary: Colors.red,
+                            ),
+                            child: Text("Close"),
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                          ),
+                          TextButton(
+                            child: Text("Save"),
+                            onPressed: () {
+                              if (_formKey.currentState!.validate()) {
+                                sendToCart();
+                              }
+                            },
+                          ),
+                        ],
+                      );
+                    });
+              },
             ),
           ],
         ),
@@ -28,26 +128,28 @@ class ItemDetails extends StatelessWidget {
                   borderRadius: BorderRadius.circular(10),
                   image: DecorationImage(
                       image: NetworkImage(
-                          "https://images.unsplash.com/photo-1518791841217-8f162f1e1131?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=500&q=60"),
+                          widget.item['image']), //NetworkImage(item['image']),
                       fit: BoxFit.cover)),
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Fresh Tomatoes",
-                  style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                  widget.item['name'],
+                  style: const TextStyle(
+                      fontSize: 25, fontWeight: FontWeight.bold),
                 ),
                 Text(
-                  "GHC100.00",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  "GH₵${widget.item['price']}",
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
@@ -63,15 +165,16 @@ class ItemDetails extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 10,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "300 bags",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w100),
+                  "${widget.item["qnty"]} pcs",
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.w100),
                 ),
                 Text(
                   "233 505 429 444",
@@ -79,12 +182,12 @@ class ItemDetails extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 15,
             ),
             Text(
-              "The tomato is the edible berry of the plant Solanum lycopersicum, commonly known as a tomato plant. The species originated in western South America and Central America. The Nahuatl word tomatl gave rise to the Spanish word tomate, from which the English word tomato derived",
-              style: TextStyle(),
+              widget.item['description'],
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w300),
             ),
             SizedBox(
               height: 15,

@@ -19,10 +19,10 @@ class ProductMethods {
       required Uint8List image}) async {
     String response = "";
     try {
+      String userId = _auth.currentUser!.uid;
+
       String picUrl =
           await StorageMethods().uploadImageToStorage("products", image, true);
-
-      String userId = _auth.currentUser!.uid;
 
       await _firestore.collection('products').doc().set({
         'name': name,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:kohisong/resources/auth_methods.dart';
+import 'package:kohisong/views/auth/forget_password_view.dart';
 import 'package:kohisong/views/auth/signup_view.dart';
 import 'package:kohisong/views/home_view.dart';
 import 'package:kohisong/widgets/toastwidget.dart';
@@ -37,8 +38,10 @@ class _LoginViewState extends State<LoginView> {
             email: _emailController.text, password: _passwordController.text)
         .then((value) {
       if (value == "success") {
-        Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => HomeView()));
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => HomeView()),
+            (route) => false);
         setState(() {
           _isLoading = false;
         });
@@ -96,7 +99,15 @@ class _LoginViewState extends State<LoginView> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     const Text('Forgeet password?'),
-                    TextButton(onPressed: () {}, child: const Text('Reset')),
+                    TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      const ForgetPasswordView()));
+                        },
+                        child: const Text('Reset')),
                   ],
                 ),
                 const SizedBox(height: 20),

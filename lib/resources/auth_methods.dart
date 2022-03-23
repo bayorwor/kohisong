@@ -66,6 +66,21 @@ class AuthMethods {
     await _auth.signOut();
   }
 
+  //reset password
+  Future<String> resetPassword({
+    required String email,
+  }) async {
+    String response = "";
+    try {
+      await _auth.sendPasswordResetEmail(email: email);
+      response = "success";
+    } catch (e) {
+      response = e.toString();
+    }
+
+    return response;
+  }
+
   //get user details
   Future<Map<String, dynamic>?> getUserDetails() async {
     String uid = _auth.currentUser!.uid;

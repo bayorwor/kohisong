@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:kohisong/views/add_product.dart';
 import 'package:kohisong/views/auth/login_view.dart';
 import 'package:kohisong/views/dashoard.dart';
-import 'package:kohisong/views/products.dart';
+import 'package:kohisong/views/my_add_to_carts.dart';
 import 'package:kohisong/views/profile_view.dart';
 
 class HomeView extends StatefulWidget {

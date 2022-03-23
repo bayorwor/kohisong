@@ -126,7 +126,7 @@ class _AddProductState extends State<AddProduct> {
                       children: const [
                         Text("Product not added"),
                         Icon(UniconsLine.times_circle,
-                            color: Colors.green, size: 60),
+                            color: Colors.red, size: 60),
                       ],
                     ),
                   ),
@@ -156,6 +156,7 @@ class _AddProductState extends State<AddProduct> {
           child: ListView(
             padding: const EdgeInsets.all(16),
             children: [
+              isPending ? const LinearProgressIndicator() : Container(),
               TextFormField(
                 controller: _nameController,
                 validator: (value) {
